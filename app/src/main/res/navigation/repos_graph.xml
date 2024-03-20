@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/repos_graph"
+    app:startDestination="@id/reposUrlsFragment">
+
+    <fragment
+        android:id="@+id/reposUrlsFragment"
+        android:name="demo.gitprofiles.repos.presentation.view.screen.ReposUrlsFragment"
+        android:label="ReposUrlsFragment" />
+</navigation>
