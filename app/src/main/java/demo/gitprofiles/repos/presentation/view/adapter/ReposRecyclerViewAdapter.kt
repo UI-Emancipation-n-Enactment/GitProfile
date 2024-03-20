@@ -3,6 +3,7 @@ package demo.gitprofiles.repos.presentation.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import demo.gitprofiles.databinding.ReposRowBinding
 import demo.gitprofiles.repos.data.remote.response.GithubReposDTO
 import demo.gitprofiles.repos.data.remote.response.GithubReposListDTO
@@ -36,15 +37,19 @@ class ReposRecyclerViewAdapter @Inject constructor(
         fun bind(githubReposDTO: GithubReposDTO?,
                  imageClickListener: ((String) -> Unit)?
         ) {
-                 binding.tvId.apply {
-                     text = githubReposDTO?.id.toString()
-                     setOnClickListener {
-                         imageClickListener?.let {
-                             it(githubReposDTO?.id.toString())
-                         }
-                     }
+            binding.apply {
+                tvRepoName.apply {
+                    text = githubReposDTO?.name
+                    setOnClickListener {
+                        imageClickListener?.let {
+                            it(githubReposDTO?.id.toString())
+                        }
+                    }
+                }
+                tvDescriptiopn.text = githubReposDTO?.description
 
-                 }
+            }
+
 
 
 

@@ -38,7 +38,7 @@ class GithubReposListViewModel @Inject constructor (
                 withTimeout(MAX_TIME_OUT) {
                     Log.d("in-viewModel", " update-LiveData-UIState in ${this.javaClass}")
                     try {
-                        val reposInfo = githubReposService.getRepos("snaqviApps")
+                        val reposInfo = githubReposService.getRepos("USERNAME")
                         if (reposInfo?.isNotEmpty() == true) {
                             Log.d("in-repo: ", "${reposInfo.size}")
                             _reposUIState.postValue(UIState.SuccessState(githubReposListDTO = reposInfo))
