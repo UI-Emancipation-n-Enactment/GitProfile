@@ -2,5 +2,9 @@
     <string name="app_name">GitProfiles</string>
     <string name="github_avatar">Github avatar</string>
     <string name="repositories">Repositories:</string>
-    <string name="application_title">Github Proifle</string>
+    <string name="application_title">Github Profile</string>
+    <string name="repo_name_label">Name:</string>
+    <string name="repo_description_label">Description:</string>
+    <string name="no_description_provided">No Description provided</string>
+    <string name="xmp_loading">Loading</string>
 </resources>

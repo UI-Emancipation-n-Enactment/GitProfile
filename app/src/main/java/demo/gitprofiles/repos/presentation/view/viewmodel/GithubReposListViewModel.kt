@@ -18,12 +18,6 @@ class GithubReposListViewModel @Inject constructor (
     private val githubReposService: GithubReposService
 ) : ViewModel() {
 
-    private val _loadingCheck = MutableLiveData<Boolean>()
-    val loadingCheck : LiveData<Boolean> = _loadingCheck
-
-    private val _moviesLoadError = MutableLiveData<Boolean>()
-    val moviesLoadError : LiveData<Boolean> = _moviesLoadError
-
     private val _reposUIState = MutableLiveData<UIState>()
     val reposUIState: LiveData<UIState> = _reposUIState
 
@@ -38,7 +32,8 @@ class GithubReposListViewModel @Inject constructor (
                 withTimeout(MAX_TIME_OUT) {
                     Log.d("in-viewModel", " update-LiveData-UIState in ${this.javaClass}")
                     try {
-                        val reposInfo = githubReposService.getRepos("USERNAME")
+                        _reposUIState.postValue(UIState.LoadingState(true))
+                        val reposInfo = githubReposService.getRepos("snaqviApps")
                         if (reposInfo?.isNotEmpty() == true) {
                             Log.d("in-repo: ", "${reposInfo.size}")
                             _reposUIState.postValue(UIState.SuccessState(githubReposListDTO = reposInfo))
@@ -51,7 +46,6 @@ class GithubReposListViewModel @Inject constructor (
                                 UIState.ErrorState(exceptionMessage)
                             })
                         }
-                        UIState.ErrorState("").displayError("in-exceptionMsg: ${exception.message}")
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.data.remote.response
+package demo.gitprofiles.repos.data.network.response
 
 
 import android.os.Parcelable

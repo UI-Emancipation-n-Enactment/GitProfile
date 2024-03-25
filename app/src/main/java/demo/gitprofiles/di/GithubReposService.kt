@@ -1,8 +1,7 @@
 package demo.gitprofiles.di
 
-import demo.githubrepos.di.DaggerReposComponent
-import demo.gitprofiles.repos.data.remote.GithubreposApi
-import demo.gitprofiles.repos.data.remote.response.GithubReposListDTO
+import demo.gitprofiles.repos.data.network.GithubreposApi
+import demo.gitprofiles.repos.data.network.response.GithubReposListDTO
 import javax.inject.Inject
 
 class GithubReposService {

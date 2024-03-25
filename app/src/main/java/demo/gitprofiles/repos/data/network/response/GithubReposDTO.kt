@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.data.remote.response
+package demo.gitprofiles.repos.data.network.response
 
 
 import android.os.Parcelable
@@ -42,7 +42,7 @@ data class GithubReposDTO(
     @SerializedName("deployments_url")
     val deploymentsUrl: String,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("disabled")
     val disabled: Boolean,
     @SerializedName("downloads_url")

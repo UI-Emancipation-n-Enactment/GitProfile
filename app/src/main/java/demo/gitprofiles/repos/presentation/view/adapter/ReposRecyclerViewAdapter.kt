@@ -3,10 +3,9 @@ package demo.gitprofiles.repos.presentation.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import demo.gitprofiles.databinding.ReposRowBinding
-import demo.gitprofiles.repos.data.remote.response.GithubReposDTO
-import demo.gitprofiles.repos.data.remote.response.GithubReposListDTO
+import demo.gitprofiles.repos.data.network.response.GithubReposDTO
+import demo.gitprofiles.repos.data.network.response.GithubReposListDTO
 import javax.inject.Inject
 
 class ReposRecyclerViewAdapter @Inject constructor(
@@ -28,32 +27,29 @@ class ReposRecyclerViewAdapter @Inject constructor(
     }
 
     override fun getItemCount(): Int = repos?.size ?: 0
-    fun<T> setOnImageClickListener(listener: (T:Any) -> Unit) {
+    fun <T> setOnImageClickListener(listener: (T: Any) -> Unit) {
         imageClickListener = listener
     }
 
     class ReposViewHolder(private val binding: ReposRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(githubReposDTO: GithubReposDTO?,
-                 imageClickListener: ((String) -> Unit)?
+        fun bind(
+            githubReposDTO: GithubReposDTO?,
+            imageClickListener: ((String) -> Unit)?
         ) {
             binding.apply {
                 tvRepoName.apply {
-                    text = githubReposDTO?.name
+                    text = githubReposDTO?.name?.trim() ?: ""
                     setOnClickListener {
                         imageClickListener?.let {
                             it(githubReposDTO?.id.toString())
                         }
                     }
                 }
-                tvDescriptiopn.text = githubReposDTO?.description
-
+                tvDescriptiopn.text = githubReposDTO?.description?.trim() ?: ""
             }
-
-
-
-
         }
     }
+
 
 }

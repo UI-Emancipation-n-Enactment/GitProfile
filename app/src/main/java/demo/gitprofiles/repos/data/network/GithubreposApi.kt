@@ -1,6 +1,6 @@
-package demo.gitprofiles.repos.data.remote
+package demo.gitprofiles.repos.data.network
 
-import demo.gitprofiles.repos.data.remote.response.GithubReposListDTO
+import demo.gitprofiles.repos.data.network.response.GithubReposListDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -1,11 +1,11 @@
-package demo.githubrepos.di.module
+package demo.gitprofiles.di.module
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import demo.gitprofiles.BuildConfig.BASE_URL
 import demo.gitprofiles.di.GithubReposService
-import demo.gitprofiles.repos.data.remote.GithubreposApi
+import demo.gitprofiles.repos.data.network.GithubreposApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

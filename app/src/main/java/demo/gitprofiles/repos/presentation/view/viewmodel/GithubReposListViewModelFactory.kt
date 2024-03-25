@@ -3,7 +3,7 @@ package demo.gitprofiles.repos.presentation.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import demo.githubrepos.di.DaggerReposComponent
+import demo.gitprofiles.di.DaggerReposComponent
 import demo.gitprofiles.di.GithubReposService
 import javax.inject.Inject
 

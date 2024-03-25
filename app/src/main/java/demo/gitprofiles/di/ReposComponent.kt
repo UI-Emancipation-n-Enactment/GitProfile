@@ -1,8 +1,7 @@
-package demo.githubrepos.di
+package demo.gitprofiles.di
 
 import dagger.Component
-import demo.githubrepos.di.module.RepoModule
-import demo.gitprofiles.di.GithubReposService
+import demo.gitprofiles.di.module.RepoModule
 import demo.gitprofiles.repos.presentation.view.viewmodel.GithubReposListViewModel
 import demo.gitprofiles.repos.presentation.view.viewmodel.GithubReposListViewModelFactory
 import javax.inject.Singleton

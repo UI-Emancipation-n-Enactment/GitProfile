@@ -1,17 +1,13 @@
 package demo.gitprofiles.repos.presentation.view.screen
 
-import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Rect
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
@@ -48,25 +44,51 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
         githubReposListViewModel.reposUIState.observe(viewLifecycleOwner) { uIState ->
             when (uIState) {
                 is UIState.EmptyState -> {}
+                is UIState.LoadingState -> {
+                    uIState.isLoadingState.let { isLoadingState ->
+                        if (isLoadingState) {
+                            binding.apply {
+                                progressBarLayout.visibility = View.VISIBLE
+                                progressBarTextView.setOnClickListener {            // toggles progressBar's visibility
+                                   if(cirProgressBar.isVisible){
+                                       cirProgressBar.visibility = View.GONE
+                                   } else {
+                                       cirProgressBar.visibility = View.VISIBLE
+                                   }
+                                }
+                            }
+
+                        } else {
+                            binding.progressBarLayout.visibility = View.GONE
+                            binding.cirProgressBar.visibility = View.GONE
+                        }
+                    }
+                }
                 is UIState.SuccessState -> {
+                    binding.progressBarLayout.visibility = View.GONE
                     val repos = uIState.githubReposListDTO
-                    repos?.map {
-                        Glide.with(binding.root)
-                            .load(it.owner.avatarUrl)
-                            .into(binding.imageAvatar)
 
+                    repos?.map {githubRepo->
                         binding.apply {
-                            tvLogin.text = it.owner.login
-
+                            binding.imageAvatar.setOnClickListener {
+                                Glide.with(root)
+                                    .load(githubRepo.owner.avatarUrl)
+                                    .into(imageAvatar)
+                                    tvLogin.text =githubRepo.owner.login
+                            }
                         }
 
                     }
+                    repos.let {
+                        it?.sortBy { repo ->
+                            repo.updatedAt
+                        }
+                    }
                     repos?.reverse()
-                    reposRecyclerViewAdapter = ReposRecyclerViewAdapter(repos)                // passing data to ReposAdapter
+                    reposRecyclerViewAdapter = ReposRecyclerViewAdapter(repos)
                     binding.rViewGithubRepos.adapter = reposRecyclerViewAdapter
-                    binding.rViewGithubRepos.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rViewGithubRepos.layoutManager = GridLayoutManager(requireContext(), 1)
                     reposRecyclerViewAdapter.apply {
-
                     }
                 }
 
