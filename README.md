@@ -5,21 +5,18 @@ This application provides the list of public repositories. It demos the legacy a
   updates:
   - added modal-loading progressBar with text
 
-
- :-------------------------                                                                                              :|:                  -------------------------:
- ![Screenshot_1711409655](https://github.com/snaqviApps/GitProfile/assets/16334260/b504d98d-9aad-472c-a54a-8bde0fab34cb)  | ![Screenshot_1711409892](https://github.com/snaqviApps/GitProfile/assets/16334260/ef0e1482-ec01-43ac-96bd-670061933e36)
-  
-  
-  <table> 
-    <tr>
-    <td valign="top" <img src="https://github.com/snaqviApps/GitProfile/assets/16334260/6dc072d8-b069-4991-9309-dba16c27fe31") ></td>
-    </tr>
-  </table>
-
-
-
-
-- avatar is optional, would need user's click on image-placeholder to uncover it
+<table>
+  <tr>
+    <td>Opening screen, progressBar's display</td>
+     <td>repos's list, with avatar placeholder </td>
+     <td>click on image-placeholder to uncover its</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/Screenshot_1582745092.png" width=270 height=480></td>
+    <td><img src="screenshots/Screenshot_1582745125.png" width=270 height=480></td>
+    <td><img src="screenshots/Screenshot_1582745139.png" width=270 height=480></td>
+  </tr>
+ </table>
   
 
  
