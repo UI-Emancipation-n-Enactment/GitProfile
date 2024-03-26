@@ -2,9 +2,11 @@ This application provides the list of public repositories. It demos the legacy a
 - ViewModel, ViewBinding, LiveData, Retfoit, Dagger
 - **For now the landing page looks as below**
 
+**This app displays repository's ownewr basic information**
 
-This app displays repository's ownewr basic information
 
+
+- Brief steps intro landing steps:
 
 <table>
   <tr>
