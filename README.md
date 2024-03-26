@@ -17,12 +17,4 @@ This application provides the list of public repositories. It demos the legacy a
     <td><img src="screenshots/image_pic_on.png" width=270 height=480></td>
   </tr>
  </table>
-  
-
- 
-
-
-
- upon clicking, displays it:
-
 
