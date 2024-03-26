@@ -12,9 +12,9 @@ This application provides the list of public repositories. It demos the legacy a
      <td>click on image-placeholder to uncover its</td>
   </tr>
   <tr>
-    <td><img src="screenshots/Screenshot_1582745092.png" width=270 height=480></td>
-    <td><img src="screenshots/Screenshot_1582745125.png" width=270 height=480></td>
-    <td><img src="screenshots/Screenshot_1582745139.png" width=270 height=480></td>
+    <td><img src="screenshots/image_progress.png" width=270 height=480></td>
+    <td><img src="screenshots/image_pic_off.png" width=270 height=480></td>
+    <td><img src="screenshots/image_pic_on.png" width=270 height=480></td>
   </tr>
  </table>
   
