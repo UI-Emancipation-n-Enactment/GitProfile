@@ -2,8 +2,7 @@ This application provides the list of public repositories. It demos the legacy a
 - ViewModel, ViewBinding, LiveData, Retfoit, Dagger
 - **For now the landing page looks as below**
 
-  updates:
-  - added modal-loading progressBar with text
+This app displays repository's ownewr basic information
 
 <table>
   <tr>
