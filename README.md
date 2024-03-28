@@ -13,13 +13,13 @@ This application provides the list of public repositories. It demos the legacy a
     <td>open with custom progressBar, avatar placeholder</td>
      <td>repos list, with avatar displayed</td>
      <td>Detail Screen</td>
-    <td> Web View opens when link clicked</td>
+    <td> Web View opens if Url clicked </td>
   </tr>
   <tr>
     <td><img src="screenshots/image_progressBar_Main.png" width=260 height=480></td>
     <td><img src="screenshots/image_main_screen.png" width=260 height=480></td>
-    <td><img src="screenshots/image_details_hyperLink.png" width=260 height=480></td>
-    <td><img src="screenshots/image_details_and_webView.png" width=260 height=480></td>
+    <td><img src="screenshots/image_details_with_repo_hyperLink.png" width=260 height=480></td>
+    <td><img src="screenshots/image_repo_displayed.png" width=260 height=480></td>
  <tr>
  </table>
 
