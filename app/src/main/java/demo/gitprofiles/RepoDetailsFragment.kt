@@ -24,6 +24,7 @@ class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_rep
         fragmentRepoDetailsBinding = binding
 
         binding.customBarDetails.setTextVisible(true)
+        binding.customBarDetails.visibility = View.VISIBLE
 
         val received: Bundle? = arguments
         received?.apply {
@@ -35,32 +36,26 @@ class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_rep
         }
 
         binding.apply {
-            customBarDetails.setTextVisible(true)
             if(received?.isEmpty == false) {
                 repoName.text = repoNameRcvd
                 repoLanguage.text = languageRcvd
                 htmlUrl.text = htmlUrlRcvd
                 created.text = createdAtRcvd?.substringBefore("T")
                 updated.text = updatedAtRcvd?.substringBefore("T")
+                binding.customBarDetails.setTextVisible()
+
                 customBarDetails.visibility = View.GONE
             }
 
             val urlR = htmlUrl.text.toString()
             val linkedText = java.lang.String.format("<a href=\"%s\">$urlR</a> ", urlR)
-
             htmlUrl.text = Html.fromHtml(linkedText, 0)
-
             htmlUrl.setOnClickListener {
                 repoWView.visibility = View.VISIBLE
-//                val urlR = htmlUrl.text.toString()
                 repoWView.loadUrl(urlR)
             }
         }
-
-
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

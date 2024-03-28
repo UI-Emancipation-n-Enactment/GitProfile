@@ -23,7 +23,7 @@ class CustomProgressBar @JvmOverloads constructor(
         setTextVisible(isVisible)
     }
 
-    fun setTextVisible(isVisible: Boolean) {
+    fun setTextVisible(isVisible: Boolean = false) {
         customTView.visibility = if(isVisible) View.VISIBLE else View.GONE
     }
 

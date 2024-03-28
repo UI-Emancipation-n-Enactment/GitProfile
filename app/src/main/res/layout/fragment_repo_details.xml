@@ -2,26 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RepoDetailsFragment">
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    tools:context=".MainActivity">
+<!--    tools:context=".RepoDetailsFragment">-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="4dp"
-        android:elevation="16dp"
-        app:cardBackgroundColor="#7883C3"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        android:elevation="14dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -61,10 +64,12 @@
 
             <TextView
                 android:id="@+id/repoName"
-                style="@style/Base.CardView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="4dp"
+
+                android:background="#3BC3C7CC"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,10 +92,11 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="#3BC3C7CC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/repoName"
                 app:layout_constraintTop_toBottomOf="@+id/repoName" />
-
 
             <TextView
                 android:id="@+id/createdLabel"
@@ -108,6 +114,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="#3BC3C7CC"
                 app:layout_constraintBottom_toBottomOf="@+id/createdLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/repoLanguage"
@@ -129,11 +137,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="#3BC3C7CC"
                 app:layout_constraintBottom_toBottomOf="@+id/updatedLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/created"
                 app:layout_constraintTop_toBottomOf="@+id/created" />
-
 
             <TextView
                 android:id="@+id/htmlUrlLabel"
@@ -151,16 +160,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="#3BC3C7CC"
+                android:linksClickable="true"
+                android:textColorLink="#AACDEF"
                 android:textSize="12sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/htmlUrlLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/updated"
-                android:linksClickable="true"
-                android:textStyle="bold"
-                android:textColorLink="#AACDEF"
                 app:layout_constraintTop_toBottomOf="@+id/updated" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -170,7 +179,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:padding="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
