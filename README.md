@@ -16,10 +16,10 @@ This application provides the list of public repositories. It demos the legacy a
      <td>Detail Screen</td>
   </tr>
   <tr>
-    <td><img src="screenshots/image_airPlane_mode.png" width=250 height=480></td>
-    <td><img src="screenshots/image_progressBar_Main.png" width=250 height=480></td>
-    <td><img src="screenshots/image_main_Screen.png" width=250 height=480></td>
-    <td><img src="screenshots/image_DetailsScreen.png" width=270 height=480></td>
+    <td><img src="screenshots/image_airPlane_mode.png" width=260 height=480></td>
+    <td><img src="screenshots/image_progressBar_Main.png" width=260 height=480></td>
+    <td><img src="screenshots/image_main_Screen.png" width=260 height=480></td>
+    <td><img src="screenshots/image_DetailsScreen.png" width=260 height=480></td>
   </tr>
  </table>
 
