@@ -1,12 +1,13 @@
 package demo.gitprofiles
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Html
 import android.view.View
+import androidx.fragment.app.Fragment
 import demo.gitprofiles.databinding.FragmentRepoDetailsBinding
 import javax.inject.Inject
 
-class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_repo_details,) {
+class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_repo_details) {
 
     private var fragmentRepoDetailsBinding : FragmentRepoDetailsBinding? = null
 
@@ -44,9 +45,14 @@ class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_rep
                 customBarDetails.visibility = View.GONE
             }
 
+            val urlR = htmlUrl.text.toString()
+            val linkedText = java.lang.String.format("<a href=\"%s\">$urlR</a> ", urlR)
+
+            htmlUrl.text = Html.fromHtml(linkedText, 0)
+
             htmlUrl.setOnClickListener {
                 repoWView.visibility = View.VISIBLE
-                val urlR = htmlUrl.text.toString()
+//                val urlR = htmlUrl.text.toString()
                 repoWView.loadUrl(urlR)
             }
         }
