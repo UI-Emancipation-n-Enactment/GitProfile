@@ -18,8 +18,14 @@ This application provides the list of public repositories. It demos the legacy a
   <tr>
     <td><img src="screenshots/image_airPlane_mode.png" width=260 height=480></td>
     <td><img src="screenshots/image_progressBar_Main.png" width=260 height=480></td>
-    <td><img src="screenshots/image_main_Screen.png" width=260 height=480></td>
-    <td><img src="screenshots/image_DetailsScreen.png" width=260 height=480></td>
+    <td><img src="screenshots/image_main_screen.png" width=260 height=480></td>
+    <td><img src="screenshots/image_details_screen.png" width=260 height=480></td>
+  <tr>
+    <td> Web View opens if Url clicked </td>
   </tr>
+  <tr>
+    <td><img src="screenshots/image_repo_in_webView.png" width=260 height=480></td>
+  </tr>
+
  </table>
 

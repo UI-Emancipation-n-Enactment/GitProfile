@@ -36,16 +36,25 @@ class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_rep
         binding.apply {
             customBarDetails.setTextVisible(true)
             if(received?.isEmpty == false) {
-                binding.repoName.text = repoNameRcvd
-                binding.repoLanguage.text = languageRcvd
-                binding.htmlUrl.text = htmlUrlRcvd
-                binding.created.text = createdAtRcvd?.substringBefore("T")
-                binding.updated.text = updatedAtRcvd?.substringBefore("T")
+                repoName.text = repoNameRcvd
+                repoLanguage.text = languageRcvd
+                htmlUrl.text = htmlUrlRcvd
+                created.text = createdAtRcvd?.substringBefore("T")
+                updated.text = updatedAtRcvd?.substringBefore("T")
                 customBarDetails.visibility = View.GONE
+            }
+
+            htmlUrl.setOnClickListener {
+                repoWView.visibility = View.VISIBLE
+                val urlR = htmlUrl.text.toString()
+                repoWView.loadUrl(urlR)
             }
         }
 
+
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
