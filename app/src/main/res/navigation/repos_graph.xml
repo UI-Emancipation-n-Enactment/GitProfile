@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/repos_graph"
     app:startDestination="@id/reposUrlsFragment">
 
     <fragment
         android:id="@+id/reposUrlsFragment"
         android:name="demo.gitprofiles.repos.presentation.view.screen.ReposUrlsFragment"
-        android:label="ReposUrlsFragment" />
+        android:label="ReposUrlsFragment" >
+        <action
+            android:id="@+id/action_reposUrlsFragment_to_repoDetailsFragment"
+            app:destination="@id/repoDetailsFragment" >
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/repoDetailsFragment"
+        android:name="demo.gitprofiles.RepoDetailsFragment"
+        android:label="fragment_repo_details"
+        tools:layout="@layout/fragment_repo_details" >
+
+        <argument
+            android:name="repoName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="language"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="repoUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="createdAt"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="updatedAt"
+            app:argType="string"
+            app:nullable="true" />
+
+
+    </fragment>
 </navigation>

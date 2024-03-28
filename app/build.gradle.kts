@@ -1,9 +1,11 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.plugin.parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -12,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "demo.gitprofiles"
-        minSdk = 33
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -62,6 +64,7 @@ dependencies {
     val navigationVersion = "2.7.6"
     val glideVersion="4.16.0"
     val fragmentTestingVersion = "1.6.2"
+
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

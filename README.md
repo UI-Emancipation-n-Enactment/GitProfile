@@ -10,14 +10,16 @@ This application provides the list of public repositories. It demos the legacy a
 
 <table>
   <tr>
-    <td>Opening screen, progressBar's display</td>
-     <td>repos's list, with avatar placeholder </td>
+    <td>Opening screen, custom progressBar</td>
+     <td>repos list, with avatar placeholder </td>
      <td>click on image-placeholder to uncover its</td>
+     <td>Detail Screen</td>
   </tr>
   <tr>
-    <td><img src="screenshots/image_progress.png" width=270 height=480></td>
-    <td><img src="screenshots/image_pic_off.png" width=270 height=480></td>
-    <td><img src="screenshots/image_pic_on.png" width=270 height=480></td>
+    <td><img src="screenshots/image_airPlane_mode.png" width=250 height=480></td>
+    <td><img src="screenshots/image_progressBar_Main.png" width=250 height=480></td>
+    <td><img src="screenshots/image_main_Screen.png" width=250 height=480></td>
+    <td><img src="screenshots/image_DetailsScreen.png" width=270 height=480></td>
   </tr>
  </table>
 

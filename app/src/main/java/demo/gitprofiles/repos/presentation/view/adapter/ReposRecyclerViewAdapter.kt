@@ -31,25 +31,20 @@ class ReposRecyclerViewAdapter @Inject constructor(
         imageClickListener = listener
     }
 
-    class ReposViewHolder(private val binding: ReposRowBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(
+    class ReposViewHolder(private val binding: ReposRowBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind (
             githubReposDTO: GithubReposDTO?,
-            imageClickListener: ((String) -> Unit)?
+            imageClickListener: ((GithubReposDTO) -> Unit)?
         ) {
-            binding.apply {
-                tvRepoName.apply {
-                    text = githubReposDTO?.name?.trim() ?: ""
-                    setOnClickListener {
-                        imageClickListener?.let {
-                            it(githubReposDTO?.id.toString())
-                        }
-                    }
+            binding.tvRepoName.text = githubReposDTO?.name?.trim() ?: ""
+            binding.navImage.setOnClickListener {
+                imageClickListener?.let {
+                    githubReposDTO?.let { repo -> it(repo) }
                 }
-                tvDescriptiopn.text = githubReposDTO?.description?.trim() ?: ""
             }
+
+            binding.tvDescriptiopn.text = githubReposDTO?.description?.trim() ?: ""
         }
     }
-
 
 }

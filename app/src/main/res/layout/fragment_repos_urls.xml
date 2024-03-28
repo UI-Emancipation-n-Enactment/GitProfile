@@ -9,38 +9,46 @@
         android:layout_marginEnd="8dp"
         tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/progressBarLayout"
+<!--    <LinearLayout-->
+<!--        android:id="@+id/progressBarLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:visibility="invisible"-->
+<!--        android:gravity="center_vertical|center_horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/progressBarTextView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/xmp_loading"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:textColor="@color/design_default_color_primary_dark"-->
+<!--            android:textSize="18sp"/>-->
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/cirProgressBar"-->
+<!--            android:layout_width="129dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--    </LinearLayout>-->
+
+    <demo.gitprofiles.repos.presentation.view.CustomProgressBar
+        android:id="@+id/customProgressMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:gravity="center_vertical|center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/progressBarTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/xmp_loading"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/design_default_color_primary_dark"
-            android:textSize="18sp"/>
-
-        <ProgressBar
-            android:id="@+id/cirProgressBar"
-            android:layout_width="129dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="3dp"
-            android:layout_gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
-
+        android:padding="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -64,6 +72,9 @@
         android:layout_height="216dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="4dp"
+        android:shadowDx="10.5"
+        android:shadowDy="10.2"
+        android:elevation="2dp"
         android:gravity="center_vertical"
         android:rotation="-90"
         android:textColor="#4F2B2B"
@@ -80,13 +91,11 @@
         style="@style/CardView.Dark"
         android:layout_width="225dp"
         android:layout_height="218dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/github_avatar"
         android:src="@mipmap/ic_github_avatar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvLogin"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/ic_github_avatar_foreground" />
 
@@ -94,7 +103,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:text="@string/repositories"
         android:textSize="21sp"
         android:textStyle="bold|italic"
