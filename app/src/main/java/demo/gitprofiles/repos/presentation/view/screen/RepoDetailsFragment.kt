@@ -1,9 +1,10 @@
-package demo.gitprofiles
+package demo.gitprofiles.repos.presentation.view.screen
 
 import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.fragment.app.Fragment
+import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentRepoDetailsBinding
 import javax.inject.Inject
 

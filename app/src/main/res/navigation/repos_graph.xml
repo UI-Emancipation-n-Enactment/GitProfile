@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/repoDetailsFragment"
-        android:name="demo.gitprofiles.RepoDetailsFragment"
+        android:name="demo.gitprofiles.repos.presentation.view.screen.RepoDetailsFragment"
         android:label="fragment_repo_details"
         tools:layout="@layout/fragment_repo_details" >
 

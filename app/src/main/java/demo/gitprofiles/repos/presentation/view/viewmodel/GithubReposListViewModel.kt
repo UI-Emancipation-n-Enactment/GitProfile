@@ -43,8 +43,7 @@ class GithubReposListViewModel @Inject constructor(
                         return@flow
                     }
                     emit(UIState.SuccessState(gitReposFromApi))
-                }
-                    .collectLatest { result: UIState<GithubReposListDTO> ->
+                }.collectLatest { result: UIState<GithubReposListDTO> ->
                     when (result) {
                         is UIState.ErrorState -> {
                             Log.d("in-viewModel", " update-flow-UIState-Error in ${this.javaClass}")
@@ -52,7 +51,6 @@ class GithubReposListViewModel @Inject constructor(
                                 it.copy(isLoading = false)
                             }
                         }
-
                         is UIState.SuccessState -> {
                             Log.d("in-viewModel", " update-flow-UIState in ${this.javaClass}")
                             result.data?.let { gRepoListDTO ->
@@ -61,7 +59,6 @@ class GithubReposListViewModel @Inject constructor(
                                 }
                             }
                         }
-
                         is UIState.LoadingState -> {
                             Log.d("in-viewModel", " update-LiveData-UIState in ${this.javaClass}")
                             _reposApiCallUIState.update { loadingState ->
@@ -69,7 +66,7 @@ class GithubReposListViewModel @Inject constructor(
                             }
                         }
                     }
-                    }
+                }
             }
         }
     }
