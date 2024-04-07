@@ -9,44 +9,13 @@
         android:layout_marginEnd="8dp"
         tools:context=".MainActivity">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/progressBarLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:visibility="invisible"-->
-<!--        android:gravity="center_vertical|center_horizontal"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/progressBarTextView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/xmp_loading"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:textColor="@color/design_default_color_primary_dark"-->
-<!--            android:textSize="18sp"/>-->
-
-<!--        <ProgressBar-->
-<!--            android:id="@+id/cirProgressBar"-->
-<!--            android:layout_width="129dp"-->
-<!--            android:layout_height="26dp"-->
-<!--            android:layout_marginTop="3dp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-<!--    </LinearLayout>-->
-
     <demo.gitprofiles.repos.presentation.view.CustomProgressBar
         android:id="@+id/customProgressMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="80dp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,11 +41,11 @@
         android:layout_height="216dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="4dp"
-        android:shadowDx="10.5"
-        android:shadowDy="10.2"
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:rotation="-90"
+        android:shadowDx="10.5"
+        android:shadowDy="10.2"
         android:textColor="#4F2B2B"
         android:textSize="27sp"
         android:textStyle="bold"
@@ -84,7 +53,9 @@
         app:layout_constraintEnd_toStartOf="@+id/imageAvatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageAvatar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_optimizationLevel="graph_wrap"
+        app:layout_wrapBehaviorInParent="vertical_only" />
 
     <ImageView
         android:id="@+id/imageAvatar"
@@ -123,4 +94,3 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

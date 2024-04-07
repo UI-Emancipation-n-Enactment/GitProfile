@@ -13,7 +13,7 @@ class GithubReposService {
       DaggerReposComponent.create().inject(this)
     }
 
-    suspend fun getRepos(username: String): GithubReposListDTO? {
+    suspend fun getReposList(username: String): GithubReposListDTO? {
         return api.getGithubReposList(username)
         }
 
