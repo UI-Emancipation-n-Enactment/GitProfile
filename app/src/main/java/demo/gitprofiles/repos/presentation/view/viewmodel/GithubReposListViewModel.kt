@@ -48,19 +48,16 @@ class GithubReposListViewModel @Inject constructor(
                     when (result) {
                         is UIState.ErrorState -> {
                             Log.d("in-viewModel", " update-flow-UIState-Error in ${this.javaClass}")
-                            _reposApiCallUIState.update { gitListErrorState ->
-                                gitListErrorState.copy(isLoading = false)
+                            _reposApiCallUIState.update {
+                                it.copy(isLoading = false)
                             }
                         }
 
                         is UIState.SuccessState -> {
                             Log.d("in-viewModel", " update-flow-UIState in ${this.javaClass}")
                             result.data?.let { gRepoListDTO ->
-                                _reposApiCallUIState.update { gitListSuccessState ->
-                                    gitListSuccessState.copy(
-                                        isLoading = false,
-                                        githubApiCallList = gRepoListDTO
-                                    )
+                                _reposApiCallUIState.update {
+                                    it.copy(isLoading = false, githubApiCallList = gRepoListDTO)
                                 }
                             }
                         }
@@ -71,11 +68,8 @@ class GithubReposListViewModel @Inject constructor(
                                 loadingState.copy(isLoading = true)
                             }
                         }
-
-                        else -> {}
                     }
-            }
-
+                    }
             }
         }
     }
