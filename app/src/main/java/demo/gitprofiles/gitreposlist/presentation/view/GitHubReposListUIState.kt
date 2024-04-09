@@ -1,6 +1,6 @@
-package demo.gitprofiles.repos.presentation.view
+package demo.gitprofiles.gitreposlist.presentation.view
 
-import demo.gitprofiles.repos.data.network.response.GithubReposDTO
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
 
 data class GitHubReposListUIState(
     val isLoading: Boolean = false,

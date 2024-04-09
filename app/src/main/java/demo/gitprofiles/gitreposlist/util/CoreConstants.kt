@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.util
+package demo.gitprofiles.gitreposlist.util
 
 class CoreConstants {
 

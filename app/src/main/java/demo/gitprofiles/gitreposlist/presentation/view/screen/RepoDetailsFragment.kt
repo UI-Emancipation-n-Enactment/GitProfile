@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.presentation.view.screen
+package demo.gitprofiles.gitreposlist.presentation.view.screen
 
 import android.os.Bundle
 import android.text.Html

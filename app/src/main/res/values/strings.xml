@@ -10,11 +10,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="it_is_part_of_custom_progress_image">It is part of custom Progress Image</string>
-    <string name="details_name_label">Repository:</string>
-    <string name="details_language_label">Language:</string>
-    <string name="details_userUrl_label">User URL:</string>
-    <string name="details_reposUrl_label">All Repos:</string>
-    <string name="details_htmlUrl_label">Repo Url:</string>
-    <string name="created_label">Created:</string>
-    <string name="updated_label">Updated:</string>
+    <string name="details_name_label">Repository</string>
+    <string name="details_language_label">Language</string>
+    <string name="details_userUrl_label">User URL</string>
+    <string name="details_reposUrl_label">All Repos</string>
+    <string name="details_htmlUrl_label">Repo Url</string>
+    <string name="created_label">Created</string>
+    <string name="updated_label">Updated</string>
 </resources>

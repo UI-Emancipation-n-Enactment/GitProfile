@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.presentation
+package demo.gitprofiles.gitreposlist.presentation
 
 
 sealed class UIState<T> (

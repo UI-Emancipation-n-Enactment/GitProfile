@@ -1,11 +1,11 @@
-package demo.gitprofiles.repos.presentation.view.adapter
+package demo.gitprofiles.gitreposlist.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import demo.gitprofiles.databinding.ReposRowBinding
-import demo.gitprofiles.repos.data.network.response.GithubReposDTO
-import demo.gitprofiles.repos.data.network.response.GithubReposListDTO
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposListDTO
 import javax.inject.Inject
 
 class ReposRecyclerViewAdapter @Inject constructor(

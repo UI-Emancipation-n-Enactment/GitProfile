@@ -1,7 +1,7 @@
 package demo.gitprofiles.di
 
-import demo.gitprofiles.repos.data.network.GithubreposApi
-import demo.gitprofiles.repos.data.network.response.GithubReposListDTO
+import demo.gitprofiles.gitreposlist.data.network.GithubreposApi
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposListDTO
 import javax.inject.Inject
 
 class GithubReposService {

@@ -5,14 +5,14 @@ import dagger.Module
 import dagger.Provides
 import demo.gitprofiles.BuildConfig.BASE_URL
 import demo.gitprofiles.di.GithubReposService
-import demo.gitprofiles.repos.data.network.GithubreposApi
+import demo.gitprofiles.gitreposlist.data.network.GithubreposApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class RepoModule {
+class GitRepositoryModule {
 
     private val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.presentation.view
+package demo.gitprofiles.gitreposlist.presentation.view
 
 import android.content.Context
 import android.util.AttributeSet

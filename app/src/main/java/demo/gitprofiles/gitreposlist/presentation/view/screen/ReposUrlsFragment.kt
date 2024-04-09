@@ -1,4 +1,4 @@
-package demo.gitprofiles.repos.presentation.view.screen
+package demo.gitprofiles.gitreposlist.presentation.view.screen
 
 import android.os.Bundle
 import android.view.View
@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
-import demo.gitprofiles.repos.data.network.response.GithubReposDTO
-import demo.gitprofiles.repos.data.network.response.GithubReposListDTO
-import demo.gitprofiles.repos.presentation.view.GitHubReposListUIState
-import demo.gitprofiles.repos.presentation.view.adapter.ReposRecyclerViewAdapter
-import demo.gitprofiles.repos.presentation.view.viewmodel.GithubReposListViewModel
-import demo.gitprofiles.repos.presentation.view.viewmodel.GithubReposListViewModelFactory
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposListDTO
+import demo.gitprofiles.gitreposlist.presentation.view.GitHubReposListUIState
+import demo.gitprofiles.gitreposlist.presentation.view.adapter.ReposRecyclerViewAdapter
+import demo.gitprofiles.gitreposlist.presentation.view.viewmodel.GithubReposListViewModel
+import demo.gitprofiles.gitreposlist.presentation.view.viewmodel.GithubReposListViewModelFactory
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -30,8 +30,6 @@ import javax.inject.Inject
  * Handles Popular Movie data (only Poster-view)
  */
 class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos_urls) {
-
-//    private lateinit var customProgressBar: CustomProgressBar
     private var fragmentGithubReposBinding: FragmentReposUrlsBinding? = null
     private lateinit var githubReposListViewModel: GithubReposListViewModel
 
