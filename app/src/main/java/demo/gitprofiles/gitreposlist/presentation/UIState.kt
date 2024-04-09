@@ -6,10 +6,6 @@ sealed class UIState<T> (
     val error: String? = null
 ){
     class SuccessState<T>(data: T?) : UIState<T>(data)
-    class ErrorState<T>(error: String?, data: T? = null) : UIState<T>(data, error){
-        fun displayError(error: String) {
-            println("This is an error: $error")
-        }
-    }
+    class ErrorState<T>(error: String?, data: T? = null) : UIState<T>(data, error)
     class LoadingState<T>(val isLoadingState: Boolean) : UIState<T>()
 }

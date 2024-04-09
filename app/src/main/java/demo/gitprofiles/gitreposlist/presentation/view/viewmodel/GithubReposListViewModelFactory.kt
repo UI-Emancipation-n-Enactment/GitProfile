@@ -4,7 +4,6 @@ package demo.gitprofiles.gitreposlist.presentation.view.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import demo.gitprofiles.di.DaggerReposComponent
-import demo.gitprofiles.di.GithubReposService
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
 import javax.inject.Inject
 

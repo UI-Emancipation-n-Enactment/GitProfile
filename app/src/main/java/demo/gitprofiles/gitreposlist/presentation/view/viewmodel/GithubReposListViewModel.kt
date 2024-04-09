@@ -1,6 +1,5 @@
 package demo.gitprofiles.gitreposlist.presentation.view.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -29,21 +28,17 @@ class GithubReposListViewModel @Inject constructor(
     }
 
     private fun fetchGithubRepos() {
-        Log.d("in-viewModel", "calling prepareGithubRepos")
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                Log.d("in-viewModel", " update-FLow-UIState in ${this.javaClass}")
                gitProfileRepository.getGitProfiles()
                 }.collectLatest { result: UIState<GithubReposListDTO> ->
                     when (result) {
                         is UIState.ErrorState -> {
-                            Log.d("in-viewModel", " update-flow-UIState-Error in ${this.javaClass}")
                             _reposApiCallUIState.update {
                                 it.copy(isLoading = false)
                             }
                         }
                         is UIState.SuccessState -> {
-                            Log.d("in-viewModel", " update-flow-UIState in ${this.javaClass}")
                             result.data?.let { gRepoListDTO ->
                                 _reposApiCallUIState.update {
                                     it.copy(isLoading = false, githubApiCallList = gRepoListDTO)
@@ -51,7 +46,6 @@ class GithubReposListViewModel @Inject constructor(
                             }
                         }
                         is UIState.LoadingState -> {
-                            Log.d("in-viewModel", " update-LiveData-UIState in ${this.javaClass}")
                             _reposApiCallUIState.update { loadingState ->
                                 loadingState.copy(isLoading = true)
                             }
