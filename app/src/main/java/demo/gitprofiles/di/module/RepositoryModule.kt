@@ -12,7 +12,7 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun providesGitProfileRepository(
-        gitRepository: GitProfileRepositoryImpl
+        gitRepositoryImpl: GitProfileRepositoryImpl
     ): GitProfileRepository
 
 }
