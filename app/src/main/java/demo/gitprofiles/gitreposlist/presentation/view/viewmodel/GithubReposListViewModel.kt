@@ -30,29 +30,31 @@ class GithubReposListViewModel @Inject constructor(
     private fun fetchGithubRepos() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-               gitProfileRepository.getGitProfiles()
-                }.collectLatest { result: UIState<GithubReposListDTO> ->
-                    when (result) {
-                        is UIState.ErrorState -> {
+                gitProfileRepository.getGitProfiles()
+            }.collectLatest { result: UIState<GithubReposListDTO> ->
+                when (result) {
+                    is UIState.ErrorState -> {
+                        _reposApiCallUIState.update {
+                            it.copy(isLoading = false)
+                        }
+                    }
+
+                    is UIState.SuccessState -> {
+                        result.data?.let { gRepoListDTO ->
                             _reposApiCallUIState.update {
-                                it.copy(isLoading = false)
+                                it.copy(isLoading = false, githubApiCallList = gRepoListDTO)
                             }
                         }
-                        is UIState.SuccessState -> {
-                            result.data?.let { gRepoListDTO ->
-                                _reposApiCallUIState.update {
-                                    it.copy(isLoading = false, githubApiCallList = gRepoListDTO)
-                                }
-                            }
-                        }
-                        is UIState.LoadingState -> {
-                            _reposApiCallUIState.update { loadingState ->
-                                loadingState.copy(isLoading = true)
-                            }
+                    }
+
+                    is UIState.LoadingState -> {
+                        _reposApiCallUIState.update { loadingState ->
+                            loadingState.copy(isLoading = true)
                         }
                     }
                 }
             }
         }
+    }
 
 }

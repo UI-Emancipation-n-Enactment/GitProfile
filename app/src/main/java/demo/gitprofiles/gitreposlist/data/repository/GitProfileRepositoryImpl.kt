@@ -1,8 +1,9 @@
 package demo.gitprofiles.gitreposlist.data.repository
 
-import demo.gitprofiles.di.DaggerReposComponent
 import demo.gitprofiles.di.GithubReposService
+import demo.gitprofiles.gitreposlist.data.local.profileDB.GitProfileDetailsDatabase
 import demo.gitprofiles.gitreposlist.data.network.response.GithubReposListDTO
+import demo.gitprofiles.gitreposlist.data.network.response.toGitProfileEntity
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
 import demo.gitprofiles.gitreposlist.presentation.UIState
 import kotlinx.coroutines.flow.Flow
@@ -10,11 +11,9 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GitProfileRepositoryImpl @Inject constructor(
-    private val githubReposService: GithubReposService
+    private val githubReposService: GithubReposService,
+    private val gitProfileDetailsDatabase: GitProfileDetailsDatabase
 ) : GitProfileRepository {
-    init {
-        DaggerReposComponent.create().inject(this)
-    }
     override suspend fun getGitProfiles()
     : Flow<UIState<GithubReposListDTO>> {
         return flow<UIState<GithubReposListDTO>> {
@@ -24,7 +23,12 @@ class GitProfileRepositoryImpl @Inject constructor(
                 emit(UIState.ErrorState(e.message))
                 return@flow
              }
-             emit(UIState.SuccessState(gitReposFromApi))
+            // insert the repository-info to profileDB
+            gitReposFromApi?.toGitProfileEntity()?.let {
+                gitProfileDetailsDatabase.gitProfileDAO().upsertGitProfile(it)
+            }
+            emit(UIState.SuccessState(gitReposFromApi))
+
         }
     }
 }

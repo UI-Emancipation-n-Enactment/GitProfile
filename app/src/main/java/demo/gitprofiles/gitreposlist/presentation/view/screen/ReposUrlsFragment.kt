@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import demo.gitprofiles.GitProfileApp
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
 import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
@@ -26,23 +27,28 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-/**
- * Handles Popular Movie data (only Poster-view)
- */
+/** Landing screen
+ * @author
+ * <a href="mailto: naqvie@gmail.com">
+ * */
 class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos_urls) {
     private var fragmentGithubReposBinding: FragmentReposUrlsBinding? = null
     private lateinit var githubReposListViewModel: GithubReposListViewModel
 
+    @Inject
+    lateinit var viewModelFactory: GithubReposListViewModelFactory
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val githubReposListViewModelFactory = GithubReposListViewModelFactory()
-        githubReposListViewModel = ViewModelProvider(this,
-            githubReposListViewModelFactory)[GithubReposListViewModel::class.java]
+        (activity?.application as GitProfileApp).reposComponent.inject(this)
+        githubReposListViewModel = ViewModelProvider(this, viewModelFactory)[GithubReposListViewModel::class.java]
+
+        fragmentGithubReposBinding = FragmentReposUrlsBinding.bind(view)
         val binding = FragmentReposUrlsBinding.bind(view)
         fragmentGithubReposBinding = binding
 
-        // collect data-as-state from viewModel
+        /** collect data-as-state from viewModel */
         val gData: StateFlow<GitHubReposListUIState> = githubReposListViewModel.reposApiCallUIState
         collectLatestLifecycleFlowChanges(requireActivity(), gData) { gState ->
             if(!gState.isLoading) {
@@ -95,7 +101,7 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
 
 }
 
-fun <T> Fragment.collectLatestLifecycleFlowChanges(
+fun <T> ReposUrlsFragment.collectLatestLifecycleFlowChanges(
     activity: FragmentActivity,
     flow: Flow<T>,
     collectInfo: suspend (T) -> Unit

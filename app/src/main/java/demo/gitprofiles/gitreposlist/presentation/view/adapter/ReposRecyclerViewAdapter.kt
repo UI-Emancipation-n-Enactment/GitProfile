@@ -22,7 +22,6 @@ class ReposRecyclerViewAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: ReposViewHolder, position: Int) {
         val repo = repos?.get(position)
-
         holder.bind(repo, imageClickListener)
     }
 
@@ -32,14 +31,16 @@ class ReposRecyclerViewAdapter @Inject constructor(
     }
 
     class ReposViewHolder(private val binding: ReposRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind (
+       fun bind (
             githubReposDTO: GithubReposDTO?,
             imageClickListener: ((GithubReposDTO) -> Unit)?
         ) {
             binding.tvRepoName.text = githubReposDTO?.name?.trim() ?: ""
             binding.navImage.setOnClickListener {
-                imageClickListener?.let {
-                    githubReposDTO?.let { repo -> it(repo) }
+                imageClickListener?.let { listener ->
+                    githubReposDTO?.let { repo ->
+                        listener(repo)
+                    }
                 }
             }
 
