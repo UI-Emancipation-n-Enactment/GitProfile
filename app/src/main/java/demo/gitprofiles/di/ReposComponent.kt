@@ -3,9 +3,9 @@ package demo.gitprofiles.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import demo.gitprofiles.di.module.DatabaseModule
 import demo.gitprofiles.di.module.GitRepositoryModule
 import demo.gitprofiles.di.module.RepositoryModule
-import demo.gitprofiles.gitreposlist.data.local.profileDB.GitProfileDetailsDatabase
 import demo.gitprofiles.gitreposlist.data.repository.GitProfileRepositoryImpl
 import demo.gitprofiles.gitreposlist.presentation.view.screen.ReposUrlsFragment
 import demo.gitprofiles.gitreposlist.presentation.view.viewmodel.GithubReposListViewModel
@@ -24,12 +24,14 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [
+@Component(
+    modules = [
         GitRepositoryModule::class,
-        RepositoryModule::class]
+        RepositoryModule::class,
+        DatabaseModule::class
+    ]
 )
 interface ReposComponent {
-
     /** provided Application Context, required at run-time, here,
      * that is needed to create (this) RepoComponent, as it would otherwise cause the
      * 'not initialized context' Error
@@ -45,6 +47,4 @@ interface ReposComponent {
     fun inject(githubProfileRepositoryImpl: GitProfileRepositoryImpl)
     fun inject(moviesListViewModel: GithubReposListViewModel)
     fun inject(viewModelFactory: GithubReposListViewModelFactory)
-
-    fun inject(gitProfileDetailsDatabase: GitProfileDetailsDatabase)
 }

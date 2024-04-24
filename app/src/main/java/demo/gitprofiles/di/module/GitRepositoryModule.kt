@@ -17,7 +17,6 @@ import javax.inject.Singleton
 
 @Module
 class GitRepositoryModule {
-
     private val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -37,18 +36,8 @@ class GitRepositoryModule {
     }
 
     @Provides
-    fun providesMoviesService(context: Context): GithubReposService {
-        return GithubReposService(context)
-    }
-
-    @Singleton
-    @Provides
-    fun providesGitProfileDatabase(context: Context): GitProfileDetailsDatabase {
-        return Room.databaseBuilder (
-                context,
-                GitProfileDetailsDatabase::class.java, "GitProfile.db")
-            .fallbackToDestructiveMigration()
-            .build()
+    fun providesMoviesService(api: GithubreposApi): GithubReposService {
+        return GithubReposService(api)
     }
 
 }

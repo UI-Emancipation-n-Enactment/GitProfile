@@ -11,11 +11,11 @@ fun GithubReposListDTO.toGitProfileEntity(): ArrayList<GitProfileEntity> {
         gitProfileEntity.add(
             GitProfileEntity(
                 id = it.id,
-                name = it.name,
-                language = it.language,
-                htmlUrl = it.htmlUrl,
-                createdAt = it.createdAt,
-                pushedAt = it.pushedAt
+                Name = it.name,
+                Language = it.language,
+                Url = it.htmlUrl,
+                Created = it.createdAt,
+                Updated = it.pushedAt
             )
         )
     }

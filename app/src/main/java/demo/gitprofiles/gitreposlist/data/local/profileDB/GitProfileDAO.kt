@@ -13,7 +13,7 @@ interface GitProfileDAO {
     @Query("Select * from profiledetails_table")         // returns all profiles
     suspend fun getGitProfiles(): GitProfileEntity
 
-    @Query("Select * from profiledetails_table WHERE name = :name")
+    @Query("Select * from profiledetails_table WHERE Name = :name")
     suspend fun getGitProfileByName(name: String) : GitProfileEntity
 
     @Query("Delete from profiledetails_table")           // deletes all profiles
