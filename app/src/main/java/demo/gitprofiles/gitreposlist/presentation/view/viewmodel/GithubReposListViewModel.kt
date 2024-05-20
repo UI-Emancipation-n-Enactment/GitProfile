@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 
 class GithubReposListViewModel @Inject constructor(
@@ -22,6 +24,26 @@ class GithubReposListViewModel @Inject constructor(
 
     init {
         getProfiles()
+        getProfilesTwo()
+    }
+
+    private fun getProfilesTwo() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                withTimeout(2000) {
+                    gitProfileRepository.getProfilesTwo().collect { dataTwo ->
+                        when {
+                            dataTwo.isNotEmpty() -> {
+                                _state.update {
+                                    UiState.Success(dataTwo)
+                                }
+                            }
+                            else -> _state.value = UiState.Error("No data found")       // creating new instance
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun getProfiles() = viewModelScope.launch(Dispatchers.IO) {
@@ -41,6 +63,6 @@ class GithubReposListViewModel @Inject constructor(
                 else -> _state.value = UiState.Error("No data found")
             }
         }
-    }
 
+    }
 }
