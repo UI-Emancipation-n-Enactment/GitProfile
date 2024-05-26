@@ -44,25 +44,24 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 githubReposListViewModel.state.collectLatest { state ->
                     when (state) {
-                        UiState.Empty -> Unit
-
+                        is UiState.Empty -> UiState.Empty
                         is UiState.Error -> {
-                            //TODO: To be implemented
+                            binding.customProgressMain.visibility = View.GONE
+                            Toast.makeText(requireContext(), state.error, Toast.LENGTH_LONG).show()
                         }
-
-                        UiState.LoadingState -> {
-                            //TODO: To be implemented
-                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+                        is UiState.LoadingState -> {
+                            binding.customProgressMain.visibility = View.VISIBLE
                         }
 
                         is UiState.Success -> {
+                            binding.customProgressMain.visibility = View.GONE
                             val adapter = RVAdapter(state.data)
                             binding.rViewGithubRepos.adapter = adapter
-
                             binding.rViewGithubRepos.layoutManager =
                                 GridLayoutManager(requireContext(), 1)
-
                         }
+
+
                     }
                 }
             }

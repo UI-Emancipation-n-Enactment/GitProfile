@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
 import demo.gitprofiles.gitreposlist.presentation.view.UiState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,22 +23,24 @@ class GithubReposListViewModel @Inject constructor(
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
-        getProfiles()
         getProfilesTwo()
     }
-
     private fun getProfilesTwo() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 withTimeout(2000) {
-                    gitProfileRepository.getProfilesTwo().collect { dataTwo ->
+                    gitProfileRepository.getProfilesTwoImpl().collect { dataTwo ->
                         when {
                             dataTwo.isNotEmpty() -> {
                                 _state.update {
                                     UiState.Success(dataTwo)
                                 }
                             }
-                            else -> _state.value = UiState.Error("No data found")       // creating new instance
+                            else -> {
+                                _state.update {
+                                    UiState.Error("empty body received")
+                                }
+                            }
                         }
                     }
                 }
@@ -46,23 +48,4 @@ class GithubReposListViewModel @Inject constructor(
         }
     }
 
-    private fun getProfiles() = viewModelScope.launch(Dispatchers.IO) {
-        _state.update {
-            UiState.LoadingState
-        }
-        delay(2000)
-        gitProfileRepository.getProfiles().collect { data ->
-            when {
-//                data.isNotEmpty() -> _state.value = UiState.Success(data)
-                data.isNotEmpty() -> {
-                    _state.update {
-                        UiState.Success(data)
-                    }
-                }
-
-                else -> _state.value = UiState.Error("No data found")
-            }
-        }
-
-    }
 }
