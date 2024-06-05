@@ -2,13 +2,13 @@ package demo.gitprofiles.gitreposlist.presentation.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
 import demo.gitprofiles.gitreposlist.presentation.view.UiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,16 +29,16 @@ class GithubReposListViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 withTimeout(2000) {
-                    gitProfileRepository.getProfilesTwoImpl().collect { dataTwo ->
+                    gitProfileRepository.getProfilesTwoImpl().collect { dataTwo: Pair<List<GithubReposDTO>, String> ->
                         when {
-                            dataTwo.isNotEmpty() -> {
+                            dataTwo.first.isNotEmpty() -> {
                                 _state.update {
-                                    UiState.Success(dataTwo)
+                                    UiState.Success(dataTwo.first)
                                 }
                             }
                             else -> {
                                 _state.update {
-                                    UiState.Error("empty body received")
+                                    UiState.Error("Error: ${dataTwo.second}")
                                 }
                             }
                         }

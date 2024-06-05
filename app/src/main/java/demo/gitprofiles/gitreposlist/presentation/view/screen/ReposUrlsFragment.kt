@@ -1,5 +1,6 @@
 package demo.gitprofiles.gitreposlist.presentation.view.screen
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.R.drawable.mtrl_ic_error
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
 import demo.gitprofiles.gitreposlist.presentation.view.UiState
@@ -47,7 +49,14 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                         is UiState.Empty -> UiState.Empty
                         is UiState.Error -> {
                             binding.customProgressMain.visibility = View.GONE
-                            Toast.makeText(requireContext(), state.error, Toast.LENGTH_LONG).show()
+                            val toast = Toast.makeText(requireContext(), state.error, Toast.LENGTH_LONG)
+                            toast.show()
+                            binding.imageAvatar.setImageIcon(
+                                Icon.createWithResource(requireContext(),
+                                mtrl_ic_error
+                                )
+                            )
+
                         }
                         is UiState.LoadingState -> {
                             binding.customProgressMain.visibility = View.VISIBLE

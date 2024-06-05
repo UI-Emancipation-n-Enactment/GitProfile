@@ -4,6 +4,5 @@ import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
 import kotlinx.coroutines.flow.Flow
 
 interface GitProfileRepository {
-    suspend fun getProfilesTwoImpl(): Flow<List<GithubReposDTO>>
-
+    suspend fun getProfilesTwoImpl(): Flow<Pair<List<GithubReposDTO>, String>>
 }
