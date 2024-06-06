@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
-import demo.gitprofiles.gitreposlist.presentation.view.UiState
+import demo.gitprofiles.gitreposlist.presentation.view.RepoState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,11 +19,12 @@ class GithubReposListViewModel @Inject constructor(
     private val gitProfileRepository: GitProfileRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<UiState>(UiState.Empty)
-    val state: StateFlow<UiState> = _state.asStateFlow()
+    private val _state = MutableStateFlow<RepoState>(RepoState.Empty)
+    val state: StateFlow<RepoState> = _state.asStateFlow()
 
     init {
-        getProfilesTwo()
+//        getProfilesTwo()
+        getProfiles()
     }
     private fun getProfilesTwo() {
         viewModelScope.launch {
@@ -33,12 +34,12 @@ class GithubReposListViewModel @Inject constructor(
                         when {
                             dataTwo.first.isNotEmpty() -> {
                                 _state.update {
-                                    UiState.Success(dataTwo.first)
+                                    RepoState.Success(dataTwo.first)
                                 }
                             }
                             else -> {
                                 _state.update {
-                                    UiState.Error("Error: ${dataTwo.second}")
+                                    RepoState.Error("Error: ${dataTwo.second}")
                                 }
                             }
                         }
@@ -47,5 +48,23 @@ class GithubReposListViewModel @Inject constructor(
             }
         }
     }
+
+    private fun getProfiles() = viewModelScope.launch {
+        val data = gitProfileRepository.getProfiles()
+            when (data) {
+                is RepoState.Error -> {
+                    _state.update {
+                        RepoState.Error("Error: ${data.error}")
+                    }
+                }
+                is RepoState.Success -> {
+                    _state.update {
+                        RepoState.Success(data.data)
+                    }
+                }
+                else -> Unit
+            }
+        }
+
 
 }

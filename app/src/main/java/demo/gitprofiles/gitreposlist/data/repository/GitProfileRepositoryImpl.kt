@@ -3,6 +3,7 @@ package demo.gitprofiles.gitreposlist.data.repository
 import demo.gitprofiles.di.GithubReposService
 import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
+import demo.gitprofiles.gitreposlist.presentation.view.RepoState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
@@ -12,11 +13,10 @@ class GitProfileRepositoryImpl @Inject constructor(
  ) : GitProfileRepository {
      override suspend fun getProfilesTwoImpl(): Flow<Pair<List<GithubReposDTO>, String>> {
 
-         var remoteResult: Pair<List<GithubReposDTO>, String> = Pair(emptyList(), "")
+         var remoteResult: Pair<List<GithubReposDTO>, String>
          try {
              val remoteOne = githubReposService.getReposList("snaqviApps") as List<GithubReposDTO>
              remoteResult = Pair(remoteOne, "")
-
          } catch (e: retrofit2.HttpException) {
              remoteResult = Pair(emptyList(), e.response()?.code().toString())
          }
@@ -44,18 +44,39 @@ class GitProfileRepositoryImpl @Inject constructor(
 //        }
 //        return remoteDataFlow
         /** ----------------------------------------------------------------------------------------------------------------- **/
-//        var remoteResult : List<GithubReposDTO> = mutableListOf<GithubReposDTO>()
-//        remoteResult = try {
-//            githubReposService.getReposList("snaqviApps_") as List<GithubReposDTO>
-//        }catch (e: retrofit2.HttpException){
-//    //            val error = e.message()
-//    //            replace with error message body
-//            emptyList()
-//        }
-//        return flowOf(remoteResult)
-        /** ----------------------------------------------------------------------------------------------------------------- **/
 
     }
+
+    /** ----------------------------------------------------------------------------------------------------------------- *
+     * The below approach is good when we do expect the date (not as Flow) to be latest (not needed to be auto-updated)
+     * Example: a remote-Api call
+     *
+     * */
+    override suspend fun getProfiles(): RepoState {
+        var remoteResultRepoState: RepoState
+        try {
+           remoteResultRepoState = RepoState.Success( githubReposService.getReposList("snaqviApps") as List<GithubReposDTO>)
+        }catch (e: retrofit2.HttpException){
+            remoteResultRepoState = RepoState.Error(e.response()?.code().toString())
+        }
+        return remoteResultRepoState
+    }
+
+    /** ----------------------------------------------------------------------------------------------------------------- *
+     * The below approach is good when we do expect the date (nas Flow) to be needed as auto-update
+     * Example: fetching local DB-data, thant will not be correct if not being 'Observable'
+     *
+
+    override suspend fun getProfiles(): Flow<RepoState> {
+        var remoteResultRepoState: RepoState
+        try {
+           remoteResultRepoState = RepoState.Success( githubReposService.getReposList("snaqviApps_") as List<GithubReposDTO>)
+        }catch (e: retrofit2.HttpException){
+            remoteResultRepoState = RepoState.Error(e.response()?.code().toString())
+        }
+        return flowOf(remoteResultRepoState)
+    }
+    */
 
 
 }

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.R.drawable.mtrl_ic_error
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
-import demo.gitprofiles.gitreposlist.presentation.view.UiState
+import demo.gitprofiles.gitreposlist.presentation.view.RepoState
 import demo.gitprofiles.gitreposlist.presentation.view.adapter.RVAdapter
 import demo.gitprofiles.gitreposlist.presentation.view.viewmodel.GithubReposListViewModel
 import demo.gitprofiles.gitreposlist.presentation.view.viewmodel.GithubReposListViewModelFactory
@@ -29,6 +29,7 @@ import javax.inject.Inject
  */
 class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos_urls) {
     private var fragmentGithubReposBinding: FragmentReposUrlsBinding? = null
+
     private lateinit var githubReposListViewModel: GithubReposListViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,6 +40,7 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
             this,
             githubReposListViewModelFactory
         )[GithubReposListViewModel::class.java]
+
         val binding = FragmentReposUrlsBinding.bind(view)
         fragmentGithubReposBinding = binding
 
@@ -46,8 +48,8 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 githubReposListViewModel.state.collectLatest { state ->
                     when (state) {
-                        is UiState.Empty -> UiState.Empty
-                        is UiState.Error -> {
+                        is RepoState.Empty -> RepoState.Empty
+                        is RepoState.Error -> {
                             binding.customProgressMain.visibility = View.GONE
                             val toast = Toast.makeText(requireContext(), state.error, Toast.LENGTH_LONG)
                             toast.show()
@@ -58,18 +60,17 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                             )
 
                         }
-                        is UiState.LoadingState -> {
+                        is RepoState.LoadingState -> {
                             binding.customProgressMain.visibility = View.VISIBLE
                         }
 
-                        is UiState.Success -> {
+                        is RepoState.Success -> {
                             binding.customProgressMain.visibility = View.GONE
                             val adapter = RVAdapter(state.data)
                             binding.rViewGithubRepos.adapter = adapter
                             binding.rViewGithubRepos.layoutManager =
                                 GridLayoutManager(requireContext(), 1)
                         }
-
 
                     }
                 }
