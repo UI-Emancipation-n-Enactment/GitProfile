@@ -1,9 +1,12 @@
 package demo.gitprofiles.gitreposlist.presentation.view.screen
 
+import android.graphics.Color
+import android.graphics.Typeface.NORMAL
 import android.graphics.drawable.Icon
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
@@ -11,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.R.drawable.mtrl_ic_error
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
 import demo.gitprofiles.gitreposlist.presentation.view.RepoState
@@ -50,20 +52,35 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                     when (state) {
                         is RepoState.Empty -> RepoState.Empty
                         is RepoState.Error -> {
+
                             binding.customProgressMain.visibility = View.GONE
-                            val toast = Toast.makeText(requireContext(), state.error, Toast.LENGTH_LONG)
-                            toast.show()
+                            val error = state.error
+                            val errorString = "Error $error"
+                            val categoryStart = errorString.indexOf(error)
+                            val categoryEnd = error.length
+                            binding.textView2.apply {
+                                visibility = View.VISIBLE
+                                textSize = 32f
+                                NORMAL
+                                text = SpannableString(state.error). apply {
+                                setSpan(
+                                    ForegroundColorSpan(Color.RED),
+                                    categoryStart,
+                                    categoryEnd,
+                                    0
+                                )
+                            }
+                            }
                             binding.imageAvatar.setImageIcon(
-                                Icon.createWithResource(requireContext(),
-                                mtrl_ic_error
+                                Icon.createWithResource(
+                                    requireContext(),
+                                    R.drawable.ic_launcher_foreground
                                 )
                             )
-
                         }
                         is RepoState.LoadingState -> {
                             binding.customProgressMain.visibility = View.VISIBLE
                         }
-
                         is RepoState.Success -> {
                             binding.customProgressMain.visibility = View.GONE
                             val adapter = RVAdapter(state.data)
@@ -71,7 +88,6 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                             binding.rViewGithubRepos.layoutManager =
                                 GridLayoutManager(requireContext(), 1)
                         }
-
                     }
                 }
             }

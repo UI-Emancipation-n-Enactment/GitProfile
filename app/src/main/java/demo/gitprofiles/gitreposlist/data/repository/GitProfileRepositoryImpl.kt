@@ -55,7 +55,7 @@ class GitProfileRepositoryImpl @Inject constructor(
     override suspend fun getProfiles(): RepoState {
         var remoteResultRepoState: RepoState
         try {
-           remoteResultRepoState = RepoState.Success( githubReposService.getReposList("snaqviApps") as List<GithubReposDTO>)
+           remoteResultRepoState = RepoState.Success( githubReposService.getReposList("snaqviApps_") as List<GithubReposDTO>)
         }catch (e: retrofit2.HttpException){
             remoteResultRepoState = RepoState.Error(e.response()?.code().toString())
         }
