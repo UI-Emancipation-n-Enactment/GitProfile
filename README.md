@@ -14,6 +14,7 @@ This application provides the list of public repositories. It demos the legacy a
      <td>repos list, with avatar displayed</td>
      <td>Detail Screen</td>
     <td> Web View opens if Url clicked </td>
+    <td> Api failed Use case: 404 </td>
   </tr>
   <tr>
     <td><img src="screenshots/image_progressBar_Main.png" width=270 height=480></td>
