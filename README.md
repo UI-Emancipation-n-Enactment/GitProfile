@@ -25,6 +25,7 @@ This application provides the list of public repositories. It demos the legacy a
 </tr>
 <tr>
     <td><img src="screenshots/image_api_error_404.png" width=270 height=480></td>
+    <td><img src="screenshots/connectivity_error.png" width=270 height=480></td>
 </tr> 
 
 

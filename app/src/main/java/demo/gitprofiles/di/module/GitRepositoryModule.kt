@@ -26,7 +26,7 @@ class GitRepositoryModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())         // airplane-mode ON causes crash
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
             .create(GithubreposApi::class.java)
