@@ -1,25 +1,19 @@
 package demo.gitprofiles.gitreposlist.presentation.view.screen
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface.NORMAL
-import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.view.Gravity
+import android.view.Gravity.CENTER
 import android.view.View
-import android.view.ViewGroup
+import android.view.View.TEXT_ALIGNMENT_CENTER
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.annotation.RequiresExtension
-import androidx.core.view.marginBottom
-import androidx.core.view.marginEnd
-import androidx.core.view.marginLeft
-import androidx.core.view.marginStart
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
@@ -28,7 +22,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.util.wrapMappedColumns
 import com.bumptech.glide.Glide
 import demo.gitprofiles.R
 import demo.gitprofiles.databinding.FragmentReposUrlsBinding
@@ -40,10 +33,7 @@ import demo.gitprofiles.gitreposlist.presentation.view.viewmodel.GithubReposList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.lang.System.exit
 import javax.inject.Inject
-import kotlin.system.exitProcess
-
 
 /**
  * Handles Popular Movie data (only Poster-view)
@@ -70,6 +60,11 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                     when (state) {
                         is RepoState.Empty -> {
                             if(state.nwException != "") {
+                                val marginLayoutParams = MarginLayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT
+                                )
+                                binding.connectionErrorView.layoutParams = marginLayoutParams
                                 binding.apply {
                                     rViewGithubRepos.visibility = View.GONE
                                     customProgressMain.visibility = View.GONE
@@ -77,13 +72,21 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                                     textView2.visibility = View.GONE
                                     connectionErrorView.apply {
                                         visibility = View.VISIBLE
-                                        textSize = 24f
-                                        rotation = -12f
-                                        gravity = Gravity.CENTER
+                                        textSize = 30f
+                                        gravity = CENTER
+                                        setBackgroundResource(R.drawable.ic_launcher_foreground)
+                                        background.setTintList(
+                                            ColorStateList.valueOf(
+                                                Color.RED +
+                                                        Color.BLUE +
+                                                        Color.GREEN + Color.YELLOW
+                                            )
+                                        )
                                         setTextColor(Color.RED)
-                                        setBackgroundColor(Color.LTGRAY)
-                                        text = state.nwException.plus(
-                                            "\n\n" + "Please check your connectivity!")
+                                        textAlignment = TEXT_ALIGNMENT_CENTER
+                                        text = state.nwException
+                                            .plus(
+                                            "\n\n" + "Please check your connection!")
                                     }
                                 }
                             }
@@ -96,7 +99,7 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                             val categoryEnd = error.length
                             binding.textView2.apply {
                                 visibility = View.VISIBLE
-                                textSize = 32f
+                                textSize = 16f
                                 NORMAL
                                 text = SpannableString(state.error). apply {
                                 setSpan(
@@ -116,7 +119,6 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
                         }
                         is RepoState.Loading -> {
                             binding.customProgressMain.visibility = View.VISIBLE
-
                         }
                         is RepoState.Success -> {
                             binding.textView.visibility = View.VISIBLE
@@ -157,7 +159,6 @@ class ReposUrlsFragment @Inject constructor() : Fragment(R.layout.fragment_repos
 
             }
         }
-
 
     }
 

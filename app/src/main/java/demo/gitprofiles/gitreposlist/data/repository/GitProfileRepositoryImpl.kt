@@ -4,8 +4,6 @@ import demo.gitprofiles.di.GithubReposService
 import demo.gitprofiles.gitreposlist.data.network.response.GithubReposDTO
 import demo.gitprofiles.gitreposlist.domain.repository.GitProfileRepository
 import demo.gitprofiles.gitreposlist.presentation.view.RepoState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class GitProfileRepositoryImpl @Inject constructor(
@@ -54,9 +52,9 @@ class GitProfileRepositoryImpl @Inject constructor(
      * */
     override suspend fun getProfiles(): RepoState {
         val remoteResultRepoState: RepoState = try {
-            RepoState.Success( githubReposService.getReposList("snaqviApps") as List<GithubReposDTO>)
+            RepoState.Success( githubReposService.getReposList("snaqviApps_") as List<GithubReposDTO>)
         }catch (e: retrofit2.HttpException){
-            RepoState.Error(e.response()?.code().toString())
+            RepoState.Error((e.message as String).plus(" page not found "))
         }
         return remoteResultRepoState
     }

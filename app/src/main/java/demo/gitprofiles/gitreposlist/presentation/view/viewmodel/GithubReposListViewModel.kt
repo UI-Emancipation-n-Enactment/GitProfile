@@ -78,18 +78,13 @@ class GithubReposListViewModel @Inject constructor(
             _state.update { failedState ->
                 when(failedState) {
                     is RepoState.Empty -> {
-                        RepoState.Empty("Error: ${e.cause?.message}")
+                        RepoState.Empty("${e.cause?.message?.substring(0, 26)}")
                     }
-
                     is RepoState.Error -> RepoState.Empty("")
                     is RepoState.Loading -> RepoState.Empty("")
                     is RepoState.Success -> RepoState.Empty("")
                 }
             }
-            Log.e("e-exception-log", e.toString().substring(0, 29))
-            Log.e("e-exception-log-cause", e.stackTrace.asList().toString())
-
-
         }
         catch (ce: CancellationException){
             Log.e("ce-exception-log", ce.printStackTrace().toString())
