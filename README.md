@@ -17,7 +17,7 @@ This application provides the list of public repositories. It demos the legacy a
   </tr>
   <tr>
     <td><img src="screenshots/image_progressBar_Main.png" width=270 height=480></td>
-    <td><img src="screenshots/image_main_screen.png" width=270 height=480></td>
+    <td><img src="screenshots/image_main_screen.png" width=350 height=480></td>
     <td><img src="screenshots/image_details_hyperLink.png" width=270 height=480></td>
     <td><img src="screenshots/image_details_and_webView.png" width=270 height=480></td>
 <tr>
@@ -26,7 +26,7 @@ This application provides the list of public repositories. It demos the legacy a
 </tr>
 <tr>
     <td><img src="screenshots/api_error_404.png" width=270 height=480></td>
-    <td><img src="screenshots/connectivity_error.png" width=400 height=480></td>
+    <td><img src="screenshots/connectivity_error.png" width=350 height=480></td>
 </tr> 
 
 
