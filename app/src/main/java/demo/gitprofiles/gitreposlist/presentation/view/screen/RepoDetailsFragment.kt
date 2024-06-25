@@ -20,13 +20,6 @@ import javax.inject.Inject
 class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_repo_details) {
 
     private var fragmentRepoDetailsBinding : FragmentRepoDetailsBinding? = null
-
-    private var repoNameRcvd : String? = ""
-    private var languageRcvd : String? = ""
-    private var htmlUrlRcvd : String? = ""
-    private var createdAtRcvd : String? = ""
-    private var updatedAtRcvd : String? = ""
-
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,41 +72,9 @@ class RepoDetailsFragment @Inject constructor() : Fragment(R.layout.fragment_rep
                             }
                         }
                     }
-
                 }
-
             }
         }
-        /***
-        received?.apply {
-            repoNameRcvd = getString("repoName")
-            languageRcvd = getString("language")
-            htmlUrlRcvd = getString("repoUrl")
-            createdAtRcvd = getString("createdAt")
-            updatedAtRcvd = getString("updatedAt")
-        }
-
-        binding.apply {
-            if(received?.isEmpty == false) {
-                repoName.text = repoNameRcvd
-                repoLanguage.text = languageRcvd
-                htmlUrl.text = htmlUrlRcvd
-                created.text = createdAtRcvd?.substringBefore("T")
-                updated.text = updatedAtRcvd?.substringBefore("T")
-                binding.customBarDetails.setTextVisible()
-
-                customBarDetails.visibility = View.GONE
-            }
-
-            val urlR = htmlUrl.text.toString()
-            val linkedText = java.lang.String.format("<a href=\"%s\">$urlR</a> ", urlR)
-            htmlUrl.text = Html.fromHtml(linkedText, 0)
-            htmlUrl.setOnClickListener {
-                repoWView.visibility = View.VISIBLE
-                repoWView.loadUrl(urlR)
-            }
-        }
-        ***/
 
     }
 

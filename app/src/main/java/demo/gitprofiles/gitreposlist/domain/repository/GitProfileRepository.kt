@@ -5,7 +5,5 @@ import demo.gitprofiles.gitreposlist.presentation.view.RepoState
 import kotlinx.coroutines.flow.Flow
 
 interface GitProfileRepository {
-//    suspend fun getProfilesTwoImpl(): Flow<Pair<List<GithubReposDTO>, String>>
     suspend fun getProfiles(): RepoState
-//    suspend fun getProfiles(): Flow<RepoState>
 }

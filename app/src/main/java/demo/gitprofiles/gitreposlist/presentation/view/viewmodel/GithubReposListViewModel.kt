@@ -24,33 +24,8 @@ class GithubReposListViewModel @Inject constructor(
     val state: StateFlow<RepoState> = _state.asStateFlow()
 
     init {
-//        getProfilesTwo()
         getProfiles()
     }
-
-    /**
-    private fun getProfilesTwo() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                withTimeout(2000) {
-                    gitProfileRepository.getProfilesTwoImpl().collect { dataTwo: Pair<List<GithubReposDTO>, String> ->
-                        when {
-                            dataTwo.first.isNotEmpty() -> {
-                                _state.update {
-                                    RepoState.Success(dataTwo.first)
-                                }
-                            }
-                            else -> {
-                                _state.update {
-                                    RepoState.Error("Error: ${dataTwo.second}")
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }*/
 
     private fun getProfiles() = viewModelScope.launch {
         try {
