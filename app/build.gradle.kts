@@ -1,11 +1,9 @@
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
-
 }
 
 android {
@@ -58,7 +56,7 @@ dependencies {
     val archVersion = "2.2.0"
     val coroutineVersion = "1.7.3"
     val roomVersion = "2.6.1"
-    val daggerVersion = "2.48"
+    val daggerVersion = "2.50"
     val lifecycleVersion = "2.7.0"
     val truthVersion = "1.1.4"
     val navigationVersion = "2.7.6"
@@ -103,8 +101,8 @@ dependencies {
 
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 
+    //Glide
     ksp("com.github.bumptech.glide:ksp:4.14.2")
-
 
     //Glide for image-handling from backEnd
     implementation("com.github.bumptech.glide:glide:$glideVersion")
@@ -113,7 +111,13 @@ dependencies {
     implementation("com.google.dagger:dagger:$daggerVersion")
     ksp("com.google.dagger:dagger-compiler:$daggerVersion")
 
+    // MockK
+    testImplementation("io.mockk:mockk:1.13.7")
+    testImplementation("io.mockk:mockk-android:1.13.7")
+    testImplementation("io.mockk:mockk-agent-jvm:1.13.7")
+
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation("org.mockito:mockito-core:4.11.0")
+    androidTestImplementation("androidx.test.ext:junit:1.2.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.0")
 }

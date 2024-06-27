@@ -1,4 +1,4 @@
-package com.example.gitprofiles
+package demo.gitprofiles
 
 import org.junit.Test
 
